@@ -1,27 +1,11 @@
-# session12_EPAI3_assignment
 
-# **Session 12 - Iterables and Iterators - II**
+# coding: utf-8
 
-## **Iterables and Iterators**
-
-* An iterable is anything that you can get an iterator from using `iter`
-
-* An iterator is an iterable that you can loop over using `next`
-
-### **Project: Description**
-
-1. The starting point for this project is the Polygon class and the Polygons sequence type we created in the previous project.
-
-2. The code for these classes along with the unit tests for the Polygon class are below if you want to use those as your starting point. But use whatever you came up with in the last project.
-
-**We have two goals:**
-
-### **Goal 1**
-
-* Refactor the Polygon class so that all the calculated properties are lazy properties, i.e. they should still be calculated properties, but they should not have to get recalculated more than once (since we made our Polygon class "immutable").
+# In[1]:
 
 
-```python
+import math
+
 class Polygon:
     def __init__(self, n, R):
         if n < 3:
@@ -91,15 +75,12 @@ class Polygon:
             return self.count_vertices > other.count_vertices
         else:
             return NotImplemented
-```
+    
 
-### **Goal 2**
 
-* Refactor the Polygons (sequence) type, into an iterable. Make sure also that the elements in the iterator are computed lazily - i.e. you can no longer use a list as an underlying storage mechanism for your polygons.
+# In[2]:
 
-* You'll need to implement both an iterable, and an iterator.
 
-```python
 class PolyIterator:
     def __init__(self, m, R):
         if m < 3:
@@ -117,13 +98,16 @@ class PolyIterator:
         else:
             result = Polygon(self._i, self._R)
             self._i += 1
-            return result  
-```
+            return result    
 
-```python
+
+# In[3]:
+
+
+
 class Polygons:
     ''' 
-    Lazy calculation done for max_efficiency_polygon function
+    updating max_efficiency_polygon property as lazy calculation
     '''
     def __init__(self, m, R):
         if m < 3:
@@ -149,35 +133,4 @@ class Polygons:
                                     reverse=True)
             self._max_efficiency_polygon = sorted_polygons[0]
         return self._max_efficiency_polygon
-```
-
-
-### **Test cases:**
-
-* `__repr__` 
-
-  Returns a string containing a printable representation of an object.
-
-* `__eq__`
-
-  Python automatically calls the `__eq__` method of a class when you use the == operator to compare the instances of the class.
-
-* `__gt__`
-
-  It performs rich comparisons between a and b. 
-
-  gt(a, b) is equivalent to a > b 
-
-
-* `__len__`
-  Returns length of an object.
-
-* `__iter__`
-  An iterable object is an object that implements `__iter__`, which is expected to return an iterator object. 
-
-* `__next__`
-  An iterator is an object that implements `__next__`, which is expected to return the next element of the iterable object that returned it, and raise a StopIteration exception when no more elements are available.
-  
-
-
 
