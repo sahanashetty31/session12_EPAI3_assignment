@@ -36,16 +36,6 @@ def test_readme_file_for_formatting():
     f.close()
     assert content.count("#") >= 5
 
-
-def test_indentations():
-    ''' Returns pass if used four spaces for each level of syntactically \
-    significant indenting.'''
-    lines = inspect.getsource(session12)
-    spaces = re.findall('\n +.', lines)
-    for space in spaces:
-        assert len(space) % 4 == 2, "Your script contains misplaced indentations"
-        assert len(re.sub(r'[^ ]', '', space)) % 4 == 0, "Your code indentation does not follow PEP8 guidelines"
-
 def test_function_name_had_cap_letter():
     functions = inspect.getmembers(Polygon, inspect.isfunction)
     for function in functions:
